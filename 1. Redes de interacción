@@ -26,3 +26,4 @@ if (!file.exists(archivo)) {
 Okey, en este punto todo bien, con Rstudio pudimos descargar el archivo y bien, el siguiente problema es que el archivo es de python y como mencionamos tiene pues una estructura no compatible con lo que usualmente ocupamos.
 lo que sigue fué cambiarlo de .py a .csv para poder leerlo.
 
+holiiiii

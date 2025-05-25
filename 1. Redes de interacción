@@ -1,0 +1,28 @@
+En el artículo de "social Netwoks predict the life and death of honey bees "
+viene la disponibilidad de datos, de la cuál se sacaron los datos para hacer las redes de interacción y metadatos 
+Estaban disponibles en zenodo : https://doi.org/10.5281/zenodo.443801393.
+Si ingresamos a esta página viene una pequeña descripción de los archivos que se incluyen. A lo largo del artículo mencionan que hicieron varios análisis 
+por lo que recopilaron varios datos. En esta parte lo que nos interesaba era poder analizar por nuestra cuenta con ayuda de la visualización de redes por lo 
+que descargamos el archivo de "interaction_networks_20160729to20160827.h5"
+Este tipo de documento nunca lo habíamos utilizado  pero pudimos analizarlo y vimos que contenía mas que data frames por lo que no pudimos visualizarlo luego luego
+en Rstudio. 
+Describe que vienen interacciones en una forma 29,2010,2010,9 que se refiere a los días, individuos, individuos e interacciones. Por lo que entendimos era como una matriz
+mas compleja, 4D por lo que teníamos que separarla de alguna forma para poder visualizarla así que buscamos como separar las interacciones de la colmena a lo largo de los 29 días 
+que duró el experimento. Con esto pensamos obtener 29 redes, que deberían ir cmabiando porque van pasando los días, y además queríamos ver cómo cambian. 
+Los labels son 9 que son los tipos de interacción y tenemos también bee_ids que son listas de 2010 abejas que fueron los individuos estudiados.
+```{r dow_conditional}
+url <- "https://zenodo.org/records/4438013/files/interaction_networks_20160729to20160827.h5?download=1"
+archivo <- "C:/Users/clizv/Documents/Descargas_proyecto_genom2025/interaction_networks_20160729to20160827.h5" ## ojito aquí, está sencillo si quieres hacerlo desde otra compu con este código.
+#si quieres hacerlo como lo hicimos, asegúrate de cambiar la dirección en donde quieres que se guarde y edscargue todo lo que está aquí, por lo que vas a tener que cambiar el C:Users hasta Dercargas_proyecto_genom2025
+#y lo que viene después es el nombre con el que se va a guardar este archivo, por lo que vas a tener que tener en cuenta estos cambios aquí y posteriormente para que funcione.
+
+if (!file.exists(archivo)) {
+  download.file(url, destfile = archivo, mode = "wb")
+  print("¡Ya se pudo descargar el archivo, vas bien!")
+} else {
+  print("El archivo ya existe, te ahorraste espacio en tu compu")
+}
+```
+Okey, en este punto todo bien, con Rstudio pudimos descargar el archivo y bien, el siguiente problema es que el archivo es de python y como mencionamos tiene pues una estructura no compatible con lo que usualmente ocupamos.
+lo que sigue fué cambiarlo de .py a .csv para poder leerlo.
+
